@@ -1,10 +1,10 @@
-public class QueueDemo<T> {
+public class CircularQueueDemo<T> {
     private T[] array;
     private int front;
     private int rear;
     private int capacity;
 
-    QueueDemo(int size) {
+    CircularQueueDemo(int size) {
         array = (T[]) new Object[size];
         front = -1;
         rear = -1;
@@ -16,7 +16,8 @@ public class QueueDemo<T> {
             if (front == -1)
                 front = 0;
             System.out.println("Adding: " + element);
-            array[++rear] = element;
+            rear = (rear + 1) % capacity;
+            array[rear] = element;
         } else
             System.out.println("Queue is full");
     }
@@ -25,7 +26,7 @@ public class QueueDemo<T> {
         if (!isEmpty()) {
             System.out.println("Removing: " + array[front]);
             array[front] = (T) Integer.valueOf(-1);
-            return array[front++];
+            return array[front++ % capacity];
         } else {
             System.out.println("Queue is empty");
             return (T) Integer.valueOf(-1);
@@ -37,7 +38,7 @@ public class QueueDemo<T> {
     }
 
     public boolean isFull() {
-        return front == 0 && rear == capacity - 1;
+        return (front == 0 && rear == capacity - 1) || front == rear + 1;
     }
 
     public T peek() {
@@ -51,6 +52,8 @@ public class QueueDemo<T> {
         for (T element : array) {
             stringBuilder.append(" ").append(element).append(" ");
         }
+
+        stringBuilder.append(" Front: ").append(front).append(" Rear: ").append(rear);
         return stringBuilder.toString();
     }
 }

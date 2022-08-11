@@ -33,5 +33,36 @@ public class Main {
         queueDemo.deqeue();
         System.out.println(queueDemo.toString());
 
+        CircularQueueDemo circularQueueDemo = new CircularQueueDemo(5);
+        circularQueueDemo.enqeue(1);
+        circularQueueDemo.enqeue(2);
+        circularQueueDemo.enqeue(3);
+        circularQueueDemo.enqeue(4);
+        circularQueueDemo.enqeue(5);
+        System.out.println(circularQueueDemo.toString());
+        circularQueueDemo.deqeue();
+        circularQueueDemo.deqeue();
+        System.out.println(circularQueueDemo.toString());
+        circularQueueDemo.enqeue(6);
+        circularQueueDemo.enqeue(7);
+        System.out.println(circularQueueDemo.toString());
+        circularQueueDemo.enqeue(8);
+
+
+        DoubleEndedQueueDemo dq = new DoubleEndedQueueDemo(4);
+        System.out.println("Insert element at rear end : 12 ");
+        dq.insertrear(12);
+        System.out.println("insert element at rear end : 14 ");
+        dq.insertrear(14);
+        System.out.println("get rear element : " + dq.getRear());
+        dq.deleterear();
+        System.out.println("After delete rear element new rear become : " + dq.getRear());
+        System.out.println("inserting element at front end");
+        dq.insertfront(13);
+        System.out.println("get front element: " + dq.getFront());
+        dq.deletefront();
+        System.out.println("After delete front element new front become : " + +dq.getFront());
+
+
     }
 }
