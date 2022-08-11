@@ -1,0 +1,3 @@
+strictfp public class Main {
+    
+}
