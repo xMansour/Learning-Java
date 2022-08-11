@@ -1,9 +1,9 @@
-public class Stack<T> {
+public class StackDemo<T> {
     private T[] arr;
     private int top;
     private int capacity;
 
-    Stack(int size) {
+    StackDemo(int size) {
         arr = (T[]) new Object[size];
         capacity = size;
         top = -1;

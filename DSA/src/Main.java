@@ -1,6 +1,6 @@
 public class Main {
     public static void main(String[] args) {
-        Stack<Integer> stack = new Stack<>(10);
+        StackDemo<Integer> stack = new StackDemo<>(10);
         stack.push(1);
         stack.push(2);
         stack.push(3);
@@ -19,6 +19,19 @@ public class Main {
         stack.pop();
         System.out.println(stack.toString());
         System.out.println("Stack's peek content: " + stack.peek());
+
+        QueueDemo queueDemo = new QueueDemo(5);
+        queueDemo.enqeue(1);
+        queueDemo.enqeue(2);
+        queueDemo.enqeue(3);
+        queueDemo.enqeue(4);
+        queueDemo.enqeue(5);
+        System.out.println(queueDemo.toString());
+        queueDemo.deqeue();
+        queueDemo.deqeue();
+        queueDemo.deqeue();
+        queueDemo.deqeue();
+        System.out.println(queueDemo.toString());
 
     }
 }
