@@ -90,5 +90,24 @@ public class Main {
         System.out.println();
 
 
+        DoublyLinkedListDemo doublyLinkedListDemo = new DoublyLinkedListDemo();
+        doublyLinkedListDemo.head = new DoublyLinkedListDemo.Node("first");
+        DoublyLinkedListDemo.Node secondDNode = new DoublyLinkedListDemo.Node("second");
+        DoublyLinkedListDemo.Node thirdDNode = new DoublyLinkedListDemo.Node("third");
+        doublyLinkedListDemo.head.nextNode = secondDNode;
+        doublyLinkedListDemo.head.prevNode = null;
+        secondDNode.nextNode = thirdDNode;
+        secondDNode.prevNode = doublyLinkedListDemo.head;
+        thirdDNode.nextNode = null;
+        thirdDNode.prevNode = secondDNode;
+        System.out.print("Linked list items: ");
+        doublyLinkedListDemo.traverseForward();
+        System.out.println();
+        System.out.print("Linked list items: ");
+        doublyLinkedListDemo.traverseBackward();
+        System.out.println();
+
+
+
     }
 }
