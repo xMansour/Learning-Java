@@ -64,5 +64,31 @@ public class Main {
         System.out.println("After delete front element new front become : " + +dq.getFront());
 
 
+        SinglyLinkedListDemo<Integer> singlyLinkedListDemo = new SinglyLinkedListDemo<>();
+        singlyLinkedListDemo.head = new SinglyLinkedListDemo.Node(1);
+        SinglyLinkedListDemo.Node secondNode = new SinglyLinkedListDemo.Node(2);
+        SinglyLinkedListDemo.Node thirdNode = new SinglyLinkedListDemo.Node(3);
+        singlyLinkedListDemo.head.nextNode = secondNode;
+        secondNode.nextNode = thirdNode;
+
+        System.out.print("Linked list items: ");
+        singlyLinkedListDemo.traverse();
+        singlyLinkedListDemo.insertAtEnd(4);
+        singlyLinkedListDemo.insertAtBeginning(0);
+        System.out.println();
+        System.out.print("Linked list items: ");
+        singlyLinkedListDemo.traverse();
+        System.out.println();
+        System.out.println(singlyLinkedListDemo.isFound(3));
+        singlyLinkedListDemo.insertAtIndex(2, 6);
+        System.out.print("Linked list items: ");
+        singlyLinkedListDemo.traverse();
+        System.out.println();
+        singlyLinkedListDemo.deleteNode(2);
+        System.out.print("Linked list items: ");
+        singlyLinkedListDemo.traverse();
+        System.out.println();
+
+
     }
 }
