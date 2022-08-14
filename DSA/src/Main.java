@@ -1,3 +1,5 @@
+import java.util.Hashtable;
+
 public class Main {
     public static void main(String[] args) {
         StackDemo<Integer> stack = new StackDemo<>(10);
@@ -107,6 +109,14 @@ public class Main {
         doublyLinkedListDemo.traverseBackward();
         System.out.println();
 
+        Hashtable<Integer, String> hashtable = new Hashtable<>();
+        hashtable.put(1, "first_value");
+        hashtable.put(2, "second_value");
+        hashtable.put(3, "third_value");
+        System.out.println(hashtable.toString());
+        hashtable.forEach((key, value) -> {
+            System.out.println(key + ":" + value);
+        });
 
 
     }
