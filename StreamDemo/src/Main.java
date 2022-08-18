@@ -34,5 +34,7 @@ public class Main {
         Stream<Integer> sqrRoots = arrayList.stream().map(a -> a * a);
         double sqrRootsProduct = sqrRoots.reduce(1, (a,b)->a*b);
         System.out.println(sqrRootsProduct);
+
+        
     }
 }
