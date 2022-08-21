@@ -1,4 +1,5 @@
 import java.io.*;
+import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) {
@@ -56,6 +57,66 @@ public class Main {
                 fos1.write(strBytes[i]);
             }
         } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+        try (FileReader fileReader = new FileReader("src/AWS")) {
+            int c;
+            while ((c = fileReader.read()) != -1) {
+                System.out.print((char) c);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try (FileReader fileReader = new FileReader("src/AWS");
+             FileWriter fileWriter = new FileWriter("src/AWS-Copied")) {
+            int c;
+            while ((c = fileReader.read()) != -1) {
+                fileWriter.write(c);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try (FileWriter fileWriter = new FileWriter("NewFile")) {
+            String source = "This is the source data to be written into the NewFile";
+            char[] buffer = new char[source.length()];
+            source.getChars(0, source.length(), buffer, 0);
+            for (char c : buffer) {
+                fileWriter.write(c);
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+        /*Console console = System.console();
+        if (console == null) return;
+        else {
+            String string = console.readLine("Enter a String: ");
+            System.out.println("You entered: " + string);
+
+            char[] passwordInput = console.readPassword();
+            System.out.println(Arrays.toString(passwordInput));
+
+        }*/
+
+        //Serialization
+        try (ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream("serial"))) {
+            Person person = new Person("Mahmoud", 26, "Male");
+            objectOutputStream.writeObject(person);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        //Deserialization
+        try (ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream("serial"))) {
+            Person person = (Person) objectInputStream.readObject();
+            System.out.println(person.toString());
+        } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
     }
