@@ -6,6 +6,8 @@ public class Main {
         System.out.println("Starting...");
         new Thread(new DecThread(countDownLatch)).start();
         try {
+            //calling await() from the main thread causes the main thread to wait until the count down latch
+            //reaches zero.
             countDownLatch.await();
         } catch (InterruptedException e) {
             e.printStackTrace();
