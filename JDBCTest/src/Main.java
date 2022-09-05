@@ -6,22 +6,27 @@ public class Main {
         String user = "jdbc";
         String password = "jdbc";
         try (Connection connection = DriverManager.getConnection(dbUrl, user, password)) {
-            read(connection);
-            insert(connection, "Mansour", "Mahmoud", "MahmoudMansour@mail.com",
-                    "CSE", 1000);
-            read(connection);
-            update(connection, 14, "Mahmoud@mail.com");
-            read(connection);
-            delete(connection, 12);
-            read(connection);
+            //read(connection);
+            //insert(connection, "Mansour", "Mahmoud", "MahmoudMansour@mail.com",
+            //      "CSE", 1000);
+            //read(connection);
+            //update(connection, 14, "Mahmoud@mail.com");
+            //read(connection);
+            //delete(connection, 12);
+            //read(connection);
 
-            insertWithPreparedStatements(connection, "xMansour", "xMahmoud", "MahmoudMansour@mail.com",
-                    "xCSE", 1000);
+            //insertWithPreparedStatements(connection, "xMansour", "xMahmoud", "MahmoudMansour@mail.com",
+            //      "xCSE", 1000);
+            //read(connection);
+            //updateWithPreparedStatements(connection, 12, "Mansour@mail.com");
+            //read(connection);
+            //deleteWithPreparedStatements(connection, 13);
+            //read(connection);
             read(connection);
-            updateWithPreparedStatements(connection, 12, "Mansour@mail.com");
+            increaseSalaries(connection, 50000, "Engineering");
             read(connection);
-            deleteWithPreparedStatements(connection, 13);
-            read(connection);
+            System.out.println("\n\nHR Department Count: " + getDepartmentCount(connection, "HR"));
+            readResultSet(getEmployeesForDepartment(connection, "HR"));
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -41,6 +46,20 @@ public class Main {
         System.out.println("Data Read Successfully");
         System.out.println("__________________________________________________________________________________________");
 
+    }
+
+    private static void readResultSet(ResultSet resultSet) throws SQLException {
+        while (resultSet.next()) {
+            System.out.println("__________________________________________________________________________________________");
+            while (resultSet.next()) {
+                System.out.print(resultSet.getString("id") + " " + resultSet.getString("last_name") +
+                        " " + resultSet.getString("first_name") + " " + resultSet.getString("email") +
+                        " " + resultSet.getString("department") + " " + resultSet.getString("salary"));
+                System.out.println();
+            }
+            System.out.println("Data Read Successfully");
+            System.out.println("__________________________________________________________________________________________");
+        }
     }
 
     private static void insert(Connection connection, String lastName, String firstName, String email,
@@ -91,5 +110,28 @@ public class Main {
         PreparedStatement statement = connection.prepareStatement("DELETE FROM EMPLOYEES WHERE id > ?");
         statement.setInt(1, id);
         statement.executeUpdate();
+    }
+
+    private static void increaseSalaries(Connection connection, double increaseAmount, String department) throws SQLException {
+        CallableStatement callableStatement = connection.prepareCall("{ call increase_salaries(?,?) }");
+        callableStatement.setDouble(1, increaseAmount);
+        callableStatement.setString(2, department);
+        callableStatement.execute();
+
+    }
+
+    private static int getDepartmentCount(Connection connection, String department) throws SQLException {
+        CallableStatement callableStatement = connection.prepareCall("{ call get_count_for_department(?,?)}");
+        callableStatement.setString(1, department);
+        callableStatement.registerOutParameter(2, Types.INTEGER);
+        callableStatement.execute();
+        return callableStatement.getInt(2);
+    }
+
+    private static ResultSet getEmployeesForDepartment(Connection connection, String department) throws SQLException {
+        CallableStatement callableStatement = connection.prepareCall("{ call get_employees_for_department(?)}");
+        callableStatement.setString(1, department);
+        callableStatement.execute();
+        return callableStatement.getResultSet();
     }
 }
