@@ -1,4 +1,5 @@
 import java.sql.*;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
@@ -22,12 +23,36 @@ public class Main {
             //read(connection);
             //deleteWithPreparedStatements(connection, 13);
             //read(connection);
+            connection.setAutoCommit(false);
             read(connection);
             increaseSalaries(connection, 50000, "Engineering");
-            read(connection);
-            System.out.println("\n\nHR Department Count: " + getDepartmentCount(connection, "HR"));
-            readResultSet(getEmployeesForDepartment(connection, "HR"));
+            //read(connection);
+            System.out.println("\n\nEngineering Department Count: " + getDepartmentCount(connection, "Engineering"));
+            readResultSet(getEmployeesForDepartment(connection, "Engineering"));
+            System.out.print("Do you want to keep the increased salary? (y/n) ");
+            Scanner scanner = new Scanner(System.in);
+            String choice = scanner.nextLine();
+            if (choice.equals("y"))
+                connection.commit();
+            else connection.rollback();
 
+            DatabaseMetaData databaseMetaData = connection.getMetaData();
+            ResultSet resultSet = databaseMetaData.getTables(null, null, null, null);
+            while (resultSet.next()) {
+                //System.out.println(resultSet.getString("COLUMN_NAME"));
+            }
+
+            ResultSetMetaData resultSetMetaData = getEmployeesForDepartment(connection, "Engineering").getMetaData();
+            System.out.println("Column Count: " + resultSetMetaData.getColumnCount());
+            for (int i = 1; i < resultSetMetaData.getColumnCount(); i++) {
+                System.out.println("_______________________________________________________");
+                System.out.println("Column Name: " + resultSetMetaData.getColumnName(i));
+                System.out.println("Column Type: " + resultSetMetaData.getColumnTypeName(i));
+                System.out.println("Is Nullable: " + resultSetMetaData.isNullable(i));
+                System.out.println("Is Auto Increment: " + resultSetMetaData.isAutoIncrement(i));
+                System.out.println("_______________________________________________________");
+
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
