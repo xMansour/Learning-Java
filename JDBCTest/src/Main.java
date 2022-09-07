@@ -1,11 +1,20 @@
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.sql.*;
+import java.util.Properties;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
-        String dbUrl = "jdbc:mysql://localhost:3306/demo";
+    public static void main(String[] args) throws IOException {
+        /*String dbUrl = "jdbc:mysql://localhost:3306/demo";
         String user = "jdbc";
-        String password = "jdbc";
+        String password = "jdbc";*/
+        Properties properties = new Properties();
+        properties.load(new FileInputStream("demo.properties"));
+        String dbUrl = properties.getProperty("dbUrl");
+        String user = properties.getProperty("user");
+        String password = properties.getProperty("password");
         try (Connection connection = DriverManager.getConnection(dbUrl, user, password)) {
             //read(connection);
             //insert(connection, "Mansour", "Mahmoud", "MahmoudMansour@mail.com",
