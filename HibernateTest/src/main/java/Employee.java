@@ -26,6 +26,9 @@ public class Employee {
     @Column(name = "salary")
     private double salary;
 
+    public Employee() {
+    }
+
     public Employee(String department, String email, String firstName, String lastName, double salary) {
         this.department = department;
         this.email = email;
