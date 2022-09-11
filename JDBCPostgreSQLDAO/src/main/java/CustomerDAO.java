@@ -53,6 +53,27 @@ public class CustomerDAO extends DataAccessObject<Customer> {
     }
 
     @Override
+    public List<Customer> findAllPaged(int limit, int pageNumber) {
+        String select = "SELECT * FROM CUST LIMIT ? OFFSET ?";
+        int offset = pageNumber * limit;
+        List<Customer> customers = new ArrayList<>();
+        try (PreparedStatement statement = this.connection.prepareStatement(select)) {
+            statement.setInt(1, limit);
+            statement.setInt(2, offset);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                customers.add(new Customer(resultSet.getLong(1), resultSet.getString(2),
+                        resultSet.getString(3), resultSet.getString(4)));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+
+        return customers;
+    }
+
+    @Override
     public Customer create(Customer dto) {
         String INSERT = "INSERT INTO CUST (FIRST_NAME, LAST_NAME, HOME_TOWN) VALUES (?,?,?)";
         try (PreparedStatement statement = this.connection.prepareStatement(INSERT)) {

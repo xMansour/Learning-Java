@@ -18,9 +18,10 @@ public class Main {
         customerDAO.create(customer2);
         customerDAO.create(customer3);
         customerDAO.create(customer4);
-        for (Customer cust : customerDAO.findAll()) {
+        customerDAO.findAll().forEach(System.out::println);
+       /* for (Customer cust : customerDAO.findAll()) {
             System.out.println(cust.toString());
-        }
+        }*/
         System.out.println();
         System.out.println();
         //System.out.println(customerDAO.findById(4).toString());
@@ -29,5 +30,13 @@ public class Main {
         Customer cust = customerDAO.findById(2);
         cust.setFirstName("Abdo");
         System.out.println(customerDAO.update(cust));
+        System.out.println();
+        System.out.println();
+
+        for (int i = 0; i < 20; i++) {
+            System.out.println("Page Number: " + i);
+            customerDAO.findAllPaged(5, i).forEach(System.out::println);
+            System.out.println();
+        }
     }
 }

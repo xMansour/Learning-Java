@@ -13,6 +13,7 @@ public abstract class DataAccessObject<T extends DataTransferObject> {
     public abstract T findById(long id);
 
     public abstract List<T> findAll();
+    public abstract List<T> findAllPaged(int limit, int pageNumber);
 
     public abstract T create(T dto);
 
