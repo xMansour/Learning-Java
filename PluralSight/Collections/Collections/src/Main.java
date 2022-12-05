@@ -27,6 +27,7 @@ public class Main {
         while (iterator.hasNext()) {
             Person person = iterator.next();
             if (person.getAge() < 30)
+
                 iterator.remove();
         }
 
