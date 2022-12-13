@@ -1,0 +1,6 @@
+Dec 13, 2022 8:10:29 PM LoggingDemo main
+SEVERE: This is a SEVERE level message
+Dec 13, 2022 8:10:29 PM LoggingDemo main
+WARNING: This is a WARNING level message
+Dec 13, 2022 8:10:29 PM LoggingDemo main
+INFO: This is an INFO level message
