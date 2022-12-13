@@ -1,5 +1,6 @@
-public class Person {
+public class Person implements Comparable<Person> {
     private String name;
+
     private int age;
 
     public Person(String name, int age) {
@@ -21,5 +22,19 @@ public class Person {
 
     public void setAge(int age) {
         this.age = age;
+    }
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "name='" + name + '\'' +
+                ", age=" + age +
+                '}';
+    }
+
+
+    @Override
+    public int compareTo(Person o) {
+        return Integer.compare(this.getAge(), o.getAge());
     }
 }
