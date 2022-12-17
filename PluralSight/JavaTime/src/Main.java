@@ -19,12 +19,19 @@ public class Main {
         System.out.println(LocalTime.now());
         System.out.println(LocalDateTime.now());
         System.out.println(Duration.ofSeconds(120).toMinutesPart());
-        
+
         LocalDate localDate = LocalDate.of(1996, 6, 15);
         String date = DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL).format(localDate);
         String dateOfFormat = DateTimeFormatter.ofPattern("dd.MM.yy").format(localDate);
         System.out.println(dateOfFormat);
         System.out.println(date);
         System.out.println(Period.between(localDate, LocalDate.now()));
+
+        LocalDate futureDate = LocalDate.of(2022, 12, 19);
+        System.out.println(Period.between(LocalDate.now(), futureDate).isNegative());
+        System.out.println(Period.between(LocalDate.now(), futureDate).equals(Period.of(0, 0, 2)));
+        System.out.println(Period.between(LocalDate.now(), futureDate).equals(Period.of(1, 0, 2)));
+        System.out.println(Period.between(LocalDate.now(), futureDate).equals(Period.of(1, 0, 2)));
+
     }
 }

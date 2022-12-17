@@ -79,13 +79,11 @@ public class HelloController implements Initializable {
                 paneContainer.getChildren().add(imageView);
                 gridPane.add((paneContainer), i, 0);
             }
-        } catch (URISyntaxException e) {
-            throw new RuntimeException(e);
-        } catch (ExecutionException e) {
-            throw new RuntimeException(e);
-        } catch (InterruptedException e) {
+        } catch (URISyntaxException | InterruptedException | ExecutionException e) {
             throw new RuntimeException(e);
         }
 
+        int x= 's';
+        System.out.println(x);
     }
 }
