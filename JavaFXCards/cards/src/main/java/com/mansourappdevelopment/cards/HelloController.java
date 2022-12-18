@@ -66,7 +66,7 @@ public class HelloController implements Initializable {
             ImageView imageView;
             Pane paneContainer;
             for (int i = 0; i < responses.size(); i++) {
-                String body = responses.get(i).get().toString();
+                String body = responses.get(i).get();
                 System.out.println("body = " + body);
                 int posterIndex = body.indexOf("https");
                 int posterLastIndex = body.indexOf("\"", posterIndex);
