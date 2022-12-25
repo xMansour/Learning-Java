@@ -6,6 +6,7 @@ import org.junit.jupiter.api.condition.OS;
 import org.mansourappdevelopment.models.Person;
 
 import java.util.List;
+import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assumptions.*;
@@ -111,6 +112,16 @@ class UnitTestingDemoTest {
     void repeatingTests(RepetitionInfo repetitionInfo) {
         System.out.println("Repeating test: " + repetitionInfo.getCurrentRepetition());
     }
+
+    //Dynamic Tests
+    @TestFactory
+    @DisplayName("Dynamic Tests")
+    Stream<DynamicTest> dynamicTestStream() {
+        return Stream.of(new Person[]{new Person("Mahmoud", "Male", 26), new Person("Ali", "Male", 25)})
+                .map(person -> DynamicTest.dynamicTest("Testing person: " + person.getName(),
+                        () -> assertEquals(26, person.getAge())));
+    }
+
 
     @Nested
     @DisplayName("Testing Exceptions")
