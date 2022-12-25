@@ -1,11 +1,14 @@
 package org.mansourappdevelopment;
 
 import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.condition.DisabledOnOs;
+import org.junit.jupiter.api.condition.OS;
 import org.mansourappdevelopment.models.Person;
 
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assumptions.*;
 
 
 @DisplayName("Testing adding objects to the persons list defined in the UnitTestingDemo class.")
@@ -80,6 +83,35 @@ class UnitTestingDemoTest {
         assertIterableEquals(persons, unitTestingDemo.getAllPersons());
     }
 
+    @Test
+    @DisplayName("Disabled test.")
+    @Disabled
+    void disabledTest() {
+        System.out.println("Disabled");
+    }
+
+    @Test
+    @DisabledOnOs(value = {OS.MAC, OS.LINUX})
+    void printOnMac() {
+        System.out.println("Test disabled on mac and linux");
+    }
+
+    @Test
+    @DisplayName("Assumptions")
+    void testingAssumptions() {
+        assumeTrue(true);
+        assumeFalse(false);
+//        assumeFalse(true);
+        assumingThat(true, () -> System.out.println("assuming that true..."));
+    }
+
+    //In repeated tests. @Test annotation should be removed
+    @DisplayName("Repeated Tests")
+    @RepeatedTest(value = 5, name = "{displayName} -> {currentRepetition}/{totalRepetitions}")
+    void repeatingTests(RepetitionInfo repetitionInfo) {
+        System.out.println("Repeating test: " + repetitionInfo.getCurrentRepetition());
+    }
+
     @Nested
     @DisplayName("Testing Exceptions")
     class otherTests {
@@ -90,8 +122,8 @@ class UnitTestingDemoTest {
                 unitTestingDemo.throwException();
             });
 
-            //custom error messages. But the message will always be calculated when the test succeeds or fails.
-            //That's why we need to use a lambda expression instead.
+//            custom error messages. But the message will always be calculated when the test succeeds or fails.
+//            That's why we need to use a lambda expression instead.
 //            assertEquals("This is a test exception.", exception.getMessage(),
 //                    "The expected message and the provided one don't match." + exception.getMessage());
 
