@@ -3,7 +3,11 @@ package org.mansourappdevelopment;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.condition.DisabledOnOs;
 import org.junit.jupiter.api.condition.OS;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvFileSource;
+import org.junit.jupiter.params.provider.ValueSource;
 import org.mansourappdevelopment.models.Person;
+import org.mansourappdevelopment.utils.StringUtils;
 
 import java.util.List;
 import java.util.stream.Stream;
@@ -122,6 +126,26 @@ class UnitTestingDemoTest {
                         () -> assertEquals(26, person.getAge())));
     }
 
+
+    //Parameterized Tests, the dependency for params must be added to get the @ParameterizedTest annotation.
+            /*<dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-params</artifactId>
+            <version>5.9.1</version>
+            <scope>test</scope>
+            </dependency>*/
+    @ParameterizedTest
+    @ValueSource(strings = {"racecar", "radar", "able was I ere I saw elba", "zooz"})
+    void testForPalindromes(String element) {
+        assertTrue(StringUtils.isPalindromes(element));
+    }
+
+    @ParameterizedTest
+    @CsvFileSource(resources = "/data.csv")
+    void testCSVFileData(int num1, int num2) {
+        assertTrue(num1 * 10 == num2,
+                () -> "num1 * 10 != num2");
+    }
 
     @Nested
     @DisplayName("Testing Exceptions")
