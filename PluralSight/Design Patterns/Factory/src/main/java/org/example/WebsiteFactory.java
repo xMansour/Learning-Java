@@ -1,11 +1,10 @@
 package org.example;
 
 public class WebsiteFactory {
-    public static Website getWebsite(String type) {
+    public static Website getWebsite(WebsiteType type) {
         return switch (type) {
-            case "ecommerce" -> new ECommerce();
-            case "blog" -> new Blog();
-            default -> null;
+            case ECOMMERCE -> new ECommerce();
+            case BLOG -> new Blog();
         };
     }
 }
