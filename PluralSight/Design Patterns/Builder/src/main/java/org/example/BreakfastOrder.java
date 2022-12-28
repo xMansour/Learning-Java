@@ -12,10 +12,6 @@ public class BreakfastOrder {
         private String bed;
         private String mkhalel;
 
-        public Builder() {
-
-        }
-
 
         public Builder fol(String fol) {
             this.fol = fol;
