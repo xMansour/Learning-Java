@@ -39,6 +39,15 @@ public class IoCDemo {
         System.out.println(runningCoach.doWorkout());
         System.out.println(runningCoach.getDailyFortune());
 
+        Coach runningCoach2 = context.getBean("runningCoach", Coach.class);
+
+        //Testing scopes
+
+        System.out.println("runningCoach2.equals(runningCoach) = " + runningCoach2.equals(runningCoach));
+        System.out.println("runningCoach2 memory address = " + runningCoach2);
+        System.out.println("runningCoach memory address = " + runningCoach);
+
+
         //Close the context
         context.close();
     }

@@ -38,7 +38,7 @@
     </bean>
 
 
-    <bean class="com.mansour.models.RunningCoach" id="runningCoach">
+    <bean class="com.mansour.models.RunningCoach" id="runningCoach" scope="prototype" init-method="initMethod" destroy-method="destroy">
         <property name="happyFortuneService" ref="happyFortuneService"/>
     </bean>
 </beans>
