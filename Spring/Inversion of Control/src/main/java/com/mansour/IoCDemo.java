@@ -46,9 +46,19 @@ public class IoCDemo {
         System.out.println("runningCoach2.equals(runningCoach) = " + runningCoach2.equals(runningCoach));
         System.out.println("runningCoach2 memory address = " + runningCoach2);
         System.out.println("runningCoach memory address = " + runningCoach);
+        
+        
+        //Annotations Bean Configuration
+        ClassPathXmlApplicationContext annotationsContext = new ClassPathXmlApplicationContext("annotationsApplicationContext.xml");
+        Coach tennisCoach = annotationsContext.getBean("tennisCoach", Coach.class); //default bean id
+        System.out.println("tennisCoach.doWorkout() = " + tennisCoach.doWorkout());
+
+        Coach AnotherTennisCoach = annotationsContext.getBean("TCoach", Coach.class); //default bean id
+        System.out.println("AnotherTennisCoach.doWorkout() = " + AnotherTennisCoach.doWorkout());
 
 
         //Close the context
         context.close();
+        annotationsContext.close();
     }
 }
