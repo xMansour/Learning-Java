@@ -9,5 +9,6 @@
 
 
     <context:component-scan base-package="com.mansour"/>
+    <context:property-placeholder location="classpath:config.properties"/>
 
 </beans>

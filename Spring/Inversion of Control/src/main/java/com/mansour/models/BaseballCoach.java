@@ -1,7 +1,6 @@
 package com.mansour.models;
 
-import com.mansour.FortuneService;
-import com.mansour.HappyFortuneService;
+import com.mansour.services.FortuneService;
 
 public class BaseballCoach implements Coach {
     private FortuneService midFortuneService;

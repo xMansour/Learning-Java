@@ -1,7 +1,7 @@
 package com.mansour.models;
 
-import com.mansour.FortuneService;
-import com.mansour.HappyFortuneService;
+import com.mansour.services.FortuneService;
+import com.mansour.services.HappyFortuneService;
 import org.springframework.beans.factory.DisposableBean;
 
 public class RunningCoach implements Coach, DisposableBean {

@@ -1,4 +1,4 @@
-package com.mansour;
+package com.mansour.services;
 
 public class HappyFortuneService implements FortuneService {
     @Override

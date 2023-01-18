@@ -1,5 +1,6 @@
-package com.mansour;
+package com.mansour.services;
 
 public interface FortuneService {
     String getFortune();
+
 }

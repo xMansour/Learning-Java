@@ -55,6 +55,11 @@ public class IoCDemo {
 
         Coach AnotherTennisCoach = annotationsContext.getBean("TCoach", Coach.class); //default bean id
         System.out.println("AnotherTennisCoach.doWorkout() = " + AnotherTennisCoach.doWorkout());
+        System.out.println("AnotherTennisCoach.getDailyFortune() = " + AnotherTennisCoach.getDailyFortune());
+        System.out.println("AnotherTennisCoach.getDailyFortune2() = " + AnotherTennisCoach.getDailyFortune2());
+        System.out.println("AnotherTennisCoach.testFieldInjectionsAutoWiring() = " + AnotherTennisCoach.testFieldInjectionsAutoWiring());
+        System.out.println("AnotherTennisCoach.getUserName() = " + AnotherTennisCoach.getUserName());
+        System.out.println("AnotherTennisCoach.getPassword() = " + AnotherTennisCoach.getPassword());
 
 
         //Close the context

@@ -8,11 +8,11 @@
     <context:property-placeholder location="classpath:config.properties"/>
 
     <!--    Define the dependency-->
-    <bean id="happyFortuneService" class="com.mansour.HappyFortuneService">
+    <bean id="happyFortuneService" class="com.mansour.services.HappyFortuneService">
     </bean>
 
     <!--    Define the dependency-->
-    <bean id="badFortuneService" class="com.mansour.models.BadFortuneService">
+    <bean id="badFortuneService" class="com.mansour.services.BadFortuneService">
     </bean>
 
     <!--    Define the dependency-->

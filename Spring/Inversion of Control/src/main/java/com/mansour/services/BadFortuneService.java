@@ -1,6 +1,4 @@
-package com.mansour.models;
-
-import com.mansour.FortuneService;
+package com.mansour.services;
 
 public class BadFortuneService implements FortuneService {
     @Override
