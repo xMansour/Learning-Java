@@ -4,9 +4,15 @@ import com.mansour.services.FortuneService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+
 @Component("TCoach")
+@Scope("singleton")
+//@Scope("prototype")
 public class AnotherTennisCoach implements Coach{
     private FortuneService fortuneService;
     private FortuneService fortuneService2;
@@ -61,5 +67,17 @@ public class AnotherTennisCoach implements Coach{
 
     public String getPassword() {
         return password;
+    }
+
+    //@PostConstruct and @PreDestroy needs to add the maven dependency javax.annotations-api starting from java 9
+    @PostConstruct
+    private void afterConstruction(){
+        System.out.println("After construction...");
+    }
+
+    //Can't be called with beans with prototype life scope
+    @PreDestroy
+    private void beforeDestruction(){
+        System.out.println("Before Destruction...");
     }
 }

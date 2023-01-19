@@ -1,7 +1,9 @@
 package com.mansour;
 
+import com.mansour.config.SportConfig;
 import com.mansour.models.Coach;
 import com.mansour.models.FootballCoach;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class IoCDemo {
@@ -46,8 +48,8 @@ public class IoCDemo {
         System.out.println("runningCoach2.equals(runningCoach) = " + runningCoach2.equals(runningCoach));
         System.out.println("runningCoach2 memory address = " + runningCoach2);
         System.out.println("runningCoach memory address = " + runningCoach);
-        
-        
+
+
         //Annotations Bean Configuration
         ClassPathXmlApplicationContext annotationsContext = new ClassPathXmlApplicationContext("annotationsApplicationContext.xml");
         Coach tennisCoach = annotationsContext.getBean("tennisCoach", Coach.class); //default bean id
@@ -61,9 +63,22 @@ public class IoCDemo {
         System.out.println("AnotherTennisCoach.getUserName() = " + AnotherTennisCoach.getUserName());
         System.out.println("AnotherTennisCoach.getPassword() = " + AnotherTennisCoach.getPassword());
 
+        Coach AnotherTennisCoach2 = annotationsContext.getBean("TCoach", Coach.class); //default bean id
+        System.out.println("AnotherTennisCoach2.equals(AnotherTennisCoach): " + AnotherTennisCoach2.equals(AnotherTennisCoach));
+        System.out.println("AnotherTennisCoach Memory location: " + AnotherTennisCoach);
+        System.out.println("AnotherTennisCoach2 Memory location: " + AnotherTennisCoach2);
 
+        AnnotationConfigApplicationContext annotationConfigApplicationContext = new AnnotationConfigApplicationContext(SportConfig.class);
+        Coach AnotherTennisCoach3 = annotationConfigApplicationContext.getBean("TCoach", Coach.class);
+        Coach footballCoach2 = annotationConfigApplicationContext.getBean("footBallCoach", Coach.class);
+        System.out.println("AnotherTennisCoach3.equals(AnotherTennisCoach): " + AnotherTennisCoach2.equals(AnotherTennisCoach3));
+        System.out.println("AnotherTennisCoach Memory location: " + AnotherTennisCoach);
+        System.out.println("AnotherTennisCoach2 Memory location: " + AnotherTennisCoach2);
+        System.out.println("AnotherTennisCoach3 Memory location: " + AnotherTennisCoach3);
+        System.out.println("footballCoach2.getDailyFortune(): "+ footballCoach2.getDailyFortune());
         //Close the context
         context.close();
         annotationsContext.close();
+        annotationConfigApplicationContext.close();
     }
 }
