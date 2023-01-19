@@ -75,7 +75,9 @@ public class IoCDemo {
         System.out.println("AnotherTennisCoach Memory location: " + AnotherTennisCoach);
         System.out.println("AnotherTennisCoach2 Memory location: " + AnotherTennisCoach2);
         System.out.println("AnotherTennisCoach3 Memory location: " + AnotherTennisCoach3);
-        System.out.println("footballCoach2.getDailyFortune(): "+ footballCoach2.getDailyFortune());
+        System.out.println("footballCoach2.getDailyFortune(): " + footballCoach2.getDailyFortune());
+        System.out.println("footballCoach2.getCoachName(): " + footballCoach2.getCoachName());
+        System.out.println("footballCoach2.getCoachId(): " + footballCoach2.getCoachId());
         //Close the context
         context.close();
         annotationsContext.close();

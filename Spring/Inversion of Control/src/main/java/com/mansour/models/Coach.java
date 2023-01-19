@@ -26,4 +26,7 @@ public interface Coach {
     default String getPassword(){
         return null;
     }
+
+    default String getCoachName(){return null;}
+    default String getCoachId(){return null;}
 }

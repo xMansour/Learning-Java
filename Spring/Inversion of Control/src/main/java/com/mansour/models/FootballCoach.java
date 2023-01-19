@@ -1,10 +1,14 @@
 package com.mansour.models;
 
 import com.mansour.services.FortuneService;
+import org.springframework.beans.factory.annotation.Value;
 
 public class FootballCoach implements Coach {
     private final FortuneService fortuneService;
+
+    @Value("${coachName}")
     private String coachName;
+    @Value("${coachId}")
     private String coachId;
 
     public FootballCoach(FortuneService fortuneService) {
@@ -29,10 +33,12 @@ public class FootballCoach implements Coach {
         this.coachId = coachId;
     }
     public String getCoachName() {
-        return coachName;
+        return this.coachName;
     }
 
     public String getCoachId() {
-        return coachId;
+        return this.coachId;
     }
+
+
 }
