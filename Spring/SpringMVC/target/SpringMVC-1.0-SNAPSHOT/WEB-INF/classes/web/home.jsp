@@ -10,5 +10,7 @@
 <body>
 <h1>Home Page</h1>
 <a href="login">Show login form</a>
+
+<a href="/student/showForm">Show student form</a>
 </body>
 </html>
