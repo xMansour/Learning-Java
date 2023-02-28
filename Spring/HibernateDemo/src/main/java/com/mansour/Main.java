@@ -32,12 +32,19 @@ public class Main {
 
 
         try {
-            //Student student = new Student("Mahmoud", "Mansour", "MahmoudMansour@test.com");
-            Student student2 = new Student("Patrick", "Bateman", "PatrickBateman@test.com");
+            Student student = new Student("Tom", "Cruse", "TomCruse@test.com");
             session.beginTransaction();
-            //session.save(student);
-            session.save(student2);
+            session.save(student);
             session.getTransaction().commit();
+            System.out.println("studentId = " + student.getId());
+
+
+            session = sessionFactory.getCurrentSession();
+            session.beginTransaction();
+            Student tomCruse = session.get(Student.class, student.getId());
+            session.getTransaction().commit();
+
+            System.out.println("johnDoe = " + tomCruse);
         } finally {
             sessionFactory.close();
         }
