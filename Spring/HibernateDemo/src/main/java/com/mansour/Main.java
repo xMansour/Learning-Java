@@ -93,6 +93,16 @@ public class Main {
             session.getTransaction().commit();
             System.out.println("students = " + students);
 
+
+
+            //Delete
+            session = sessionFactory.getCurrentSession();
+            session.beginTransaction();
+            Student studentToDelete = session.get(Student.class, students.get(3).getId());
+            session.delete(studentToDelete);
+            session.getTransaction().commit();
+
+
             //Delete
             session = sessionFactory.getCurrentSession();
             session.beginTransaction();
