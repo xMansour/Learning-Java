@@ -1,0 +1,12 @@
+{
+  "firstName" : "Mahmoud",
+  "lastName" : "Mansour",
+  "age" : 26,
+  "languages" : ["Arabic", "English"],
+  "address" : {
+    "cityName" : "Sheben",
+    "countryName" : "Egypt",
+    "zipCode" : 13711
+  },
+  "ignore": true
+}
