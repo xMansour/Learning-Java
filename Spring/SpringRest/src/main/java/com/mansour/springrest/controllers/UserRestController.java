@@ -34,17 +34,11 @@ public class UserRestController {
 
     @GetMapping("/get/{userId}")
     public User getUser(@PathVariable int userId){
+        System.out.println("userId = " + userId);
         if(userId >= users.size() || userId<0)
             throw new UserNotFoundException("User not found with id: "+userId);
         return users.get(userId);
     }
 
-    @ExceptionHandler
-    public ResponseEntity<UserErrorResponse> userErrorHandler(UserNotFoundException e){
-        UserErrorResponse userErrorResponse = new UserErrorResponse();
-        userErrorResponse.setMessage(e.getMessage());
-        userErrorResponse.setStatus(HttpStatus.NOT_FOUND.value());
-        userErrorResponse.setTimestamp(System.currentTimeMillis());
-        return new ResponseEntity<>(userErrorResponse, HttpStatus.NOT_FOUND);
-    }
+
 }
