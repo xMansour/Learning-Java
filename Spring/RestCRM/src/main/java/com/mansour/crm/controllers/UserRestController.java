@@ -16,25 +16,35 @@ public class UserRestController {
     private UserService userService;
 
     @GetMapping("/users/")
-    public List<User> listUsers(){
+    public List<User> listUsers() {
         return userService.getUsers();
     }
 
     @GetMapping("/users/{userId}")
-    public User getUser(@PathVariable int userId){
+    public User getUser(@PathVariable int userId) {
         User user = userService.getUser(userId);
         if (user == null)
-            throw new UserException("User not found with id: "+userId);
+            throw new UserException("User not found with id: " + userId);
         return userService.getUser(userId);
     }
 
     @DeleteMapping("/users/{userId}")
-    public void deleteUser(@PathVariable int userId){
+        public void deleteUser(@PathVariable int userId) {
+        User user = userService.getUser(userId);
+        if (user == null)
+            throw new UserException("User doesn't exist with id: " + userId);
         userService.deleteUser(userId);
     }
 
     @PostMapping("/users/")
-    public void addUser(){
-
+    public void addUser(@RequestBody User user) {
+        user.setId(0);  //So, it is inserted by the database.
+        userService.addUser(user);
     }
+
+    @PutMapping("/users/")
+    public void updateUser(@RequestBody User user) {
+        userService.addUser(user);
+    }
+
 }

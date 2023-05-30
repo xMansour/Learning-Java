@@ -17,7 +17,6 @@ import java.util.Properties;
 @Configuration
 @EnableTransactionManagement
 @ComponentScan(basePackages = "com.mansour.crm")
-@PropertySource("classpath:application.properties")
 public class HibernateConfig {
     @Autowired
     private Environment environment;
