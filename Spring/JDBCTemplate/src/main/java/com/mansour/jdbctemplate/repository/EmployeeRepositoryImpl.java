@@ -20,7 +20,7 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
 
     @Override
     public Employee getEmployee(int id) {
-        return jdbcTemplate.queryForObject("SELECT FROM EMPLOYEE WHERE ID = ?", new Object[]{id}, new EmployeeMapper());
+        return jdbcTemplate.queryForObject("SELECT * FROM EMPLOYEE WHERE ID = ?", new Object[]{id}, new EmployeeMapper());
     }
 
     @Override
@@ -30,7 +30,7 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
 
     @Override
     public void deleteEmployee(int id) {
-        jdbcTemplate.update("DROP FROM EMPLOYEE WHERE ID = ?", new Object[]{id});
+        jdbcTemplate.update("DELETE FROM EMPLOYEE WHERE ID = ?", new Object[]{id});
     }
 
 }

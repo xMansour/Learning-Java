@@ -3,9 +3,7 @@ package com.mansour.jdbctemplate.controller;
 import com.mansour.jdbctemplate.entity.Employee;
 import com.mansour.jdbctemplate.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -16,7 +14,24 @@ public class EmployeeController {
     private EmployeeRepository employeeRepository;
 
     @GetMapping("/")
-    List<Employee> getAllEmployees(){
+    public List<Employee> getAllEmployees(){
         return employeeRepository.getAllEmployees();
     }
+
+
+    @GetMapping("/{id}")
+    public Employee getEmployee(@PathVariable int id){
+        return employeeRepository.getEmployee(id);
+    }
+
+    @PostMapping("/")
+    public void addEmployee(@RequestBody Employee employee){
+        employeeRepository.addEmployee(employee);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteEmployee(@PathVariable int id){
+        employeeRepository.deleteEmployee(id);
+    }
+
 }
