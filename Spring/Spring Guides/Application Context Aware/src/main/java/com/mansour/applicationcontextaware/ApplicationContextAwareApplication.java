@@ -48,8 +48,7 @@ public class ApplicationContextAwareApplication {
     public Person getFirstPerson(){
         return new Person("First", "Person", 1);
     }
-    @Bean
-    @Qualifier("SecondPerson")
+    @Bean("SecondPerson")
     public Person getSecondPerson(){
         return new Person("Second", "Person", 2);
     }

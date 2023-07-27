@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class Component2 {
-    @Resource(name = "getSecondPerson")
+    @Resource(name = "SecondPerson")
     private Person person;
 
     @PostConstruct
